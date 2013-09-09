@@ -1,4 +1,4 @@
-jdf
+JDF
 ===
 
 Java Display Framework
