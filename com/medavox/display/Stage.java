@@ -64,6 +64,11 @@ public class Stage extends DisplayObjectContainer implements Runnable
     {
         init(stageWidth, stageHeight, 0, 30, null);
     }
+    /**Super-default constructor. Default parameters are as above, and stage size is 640x480.*/
+    public Stage()
+    {
+        init(640, 480, 0, 30, null);
+    }
     
     private void init(int stageWidth, int stageHeight, int bgColour, int frameRate, Runnable frameCode)
     {
