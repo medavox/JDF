@@ -37,7 +37,9 @@ public class MobileSprite extends Sprite
     {
         return rotationRad;
     }
-    
+    /**Set the rotation, in either degrees or radians
+    @param newRotation the new rotation, in either degrees or radians
+    @param inRadians is the new rotation specified in radians, or degrees?*/
     public void setRotation(double newRotation, boolean inRadians)
     {
         if(inRadians)
@@ -51,12 +53,13 @@ public class MobileSprite extends Sprite
             rotationRad = rotationDeg * Math.PI / 180;
         }
     }
-    
+    /**Sets the rotation in degrees.
+    @param newRotation the new rotation, in degrees.*/
     public void setRotation(double newRotation)
     {
         setRotation(newRotation, false);
     }
-    
+    /**Updates the position based oon velocity, and velocity based on acceleration.*/
     public void drawSprite(Graphics2D g)
     {
 		//update acceleration and velocity

@@ -55,7 +55,11 @@ public class Stage extends DisplayObjectContainer implements Runnable
     {
         init(stageWidth, stageHeight, bgColour, 30, null);
     }
-    
+    /**Create  new stage with default values:<ul><li> background colour: black</li>
+    </li> background colour: black</li>
+    </li> framerate: 30</li>frame code: none (null)</li>
+    @param stageWidth the width of the stage.
+    @param stageHeight the height.*/
     public Stage(int stageWidth, int stageHeight)
     {
         init(stageWidth, stageHeight, 0, 30, null);
@@ -83,7 +87,7 @@ public class Stage extends DisplayObjectContainer implements Runnable
         System.out.println("stageHeight: "+ stageHeight);
     }
     
-    /**Called when added to JFrame/JComponent. Primary task is to spawn and start
+    /**Called auotmatically when added to JFrame/JComponent. Primary task is to spawn and start
      * the rendering thread.*/
     public void addNotify()
     {

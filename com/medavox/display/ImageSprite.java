@@ -8,9 +8,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 @SuppressWarnings("serial")
+/**A Sprite whose vidsual representation is a loaded image file.*/
 public class ImageSprite extends Sprite
 {
     private BufferedImage currentImage;
+    /**Creates a new ImageSprite, using the specified image
+    @param imageName a string representing the path of the image to load. NOTE: uses Java 6 File package, NOT Java 7!*/
 	public ImageSprite(String imageName)
 	{
 		File imageToLoad = new File(imageName);
@@ -42,15 +45,17 @@ public class ImageSprite extends Sprite
         }
 	}
 
+    /**Draws the image.*/
 	public void drawSprite(Graphics2D g2)
 	{
 		g2.drawImage(currentImage, (int)x, (int)y, currentImage.getWidth(), currentImage.getHeight(), this);
 	}
-	
+	/**Returns height of the loaded image.*/
 	public int getHeight()
 	{
 		return currentImage.getHeight();
 	}
+    /**Returns width of the loaded image.*/
 	public int getWidth()
 	{
 		return currentImage.getWidth();
