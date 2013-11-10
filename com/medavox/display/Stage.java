@@ -142,9 +142,7 @@ public class Stage extends DisplayObjectContainer implements Runnable
         {
             //System.out.println("paint: "+children.size()+" kids on stage");
             
-            /*ERROR MUST BE HERE
-            SOLUTION FOUND
-            translate doesn't want absolute coords -- it wants movement coords!
+            /*translate doesn't want absolute coords -- it wants relative movement coords!
             so translate(0,0) does nothing;
             translate(5,5) moves the cursor 5 down and 5 right from its previous position,
                 NOT move the cursor to 5,5 exactly
