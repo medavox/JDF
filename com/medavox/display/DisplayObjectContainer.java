@@ -16,29 +16,38 @@ public abstract class DisplayObjectContainer extends Component
      * too many levels of containership, as this can create confusing, hard to
      * maintain and poorly performing code. */
     Vector<Sprite> children = new Vector<Sprite>();
+    private DisplayObjectContainer parent;
+    
+    public DisplayObjectContainer(DisplayObjectContainer parent)
+    {
+        this.parent = parent;
+    }
     
     /**Add the supplied {@link com.medavox.display.Sprite} to the end of 
      * this object's list of children.
      * @param spadd The {@link com.medavox.display.Sprite} to add*/
-    public void addChild(Sprite spadd)
+    public void addChild(DisplayObjectContainer spadd)
     {
         //System.out.println("adding child "+spadd);
         children.add(spadd);
+        spadd.setParent(this);
     }
     /**Add the supplied {@link com.medavox.display.Sprite} at the specified position
      * in this object's render list of children .
      * @param spadd The {@link com.medavox.display.Sprite} to add
      * @param index the position to add this new child*/
-    public void addChildAt(Sprite spadd, int index)
+    public void addChildAt(DisplayObjectContainer spadd, int index)
     {
         children.add(index, spadd);
+        spadd.setParent(this);
     }
     
     /**Removes the specified child.
      * @param sprem the {@link com.medavox.display.Sprite} to remove.*/
-    public void removeChild(Sprite sprem)
+    public void removeChild(DisplayObjectContainer sprem)
     {
         children.remove(sprem);
+        spadd.setParent(null);
     }
     
     /**Removes the child at the specified position.
@@ -46,6 +55,7 @@ public abstract class DisplayObjectContainer extends Component
     public void removeChildAt(int index)
     {
         children.removeElementAt(index);
+        spadd.setParent(null);
     }
     
     /**Returns the child at the specified position
@@ -60,5 +70,15 @@ public abstract class DisplayObjectContainer extends Component
     public int getNumChildren()
     {
         return children.size();
+    }
+    
+    public void setParent(DisplayObjectContainer dad)
+    {
+        this.parent = dad;
+    }
+    
+    public DisplayObjectContainer getParent()
+    {
+        return parent;
     }
 }
