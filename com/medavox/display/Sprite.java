@@ -1,7 +1,9 @@
 package com.medavox.display;
 
 import java.awt.Graphics2D;
-
+import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseMotionListener;
 /**General-purpose class for creating discrete graphical objects.
  * Sprites are intended to be added to another DisplayObjectContainer descendant,
  * such as another Sprite, or a Stage object.
@@ -94,4 +96,31 @@ public abstract class Sprite extends DisplayObjectContainer
      * Try to make the drawing's centre fall on the origin (0,0) 
      * of the local graphics instance.*/
     public abstract void drawSprite(Graphics2D g2);
+    
+    public void setMother(DisplayObjectContainer dad)
+    {
+        this.parent = dad;
+    }
+    
+    public DisplayObjectContainer getMother()
+    {
+        return parent;
+    }
+    
+    
+    //here begins a whole bunch of tedious boilerplate addMouse*listener overrides, to provide for a lack of visible swing/awt implementation
+    public void addMouseListener(MouseListener l)
+    {
+    
+    }
+    
+    public void addMouseMotionListener(MouseMotionListener l)
+    {
+    
+    }
+    
+    public void addMouseWheelListener(MouseWheelListener l)
+    {
+    
+    }
 }
