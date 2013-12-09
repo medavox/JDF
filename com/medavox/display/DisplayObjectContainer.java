@@ -8,8 +8,7 @@ import java.util.Vector;
  * are also rendered. See ActionScript 3.0's DisplayObjectContainer for details.
  * DOCs can have children, but not parents
  * @author Adam Howard
- * @author Merlyn Cooper
- * */
+ * @author Merlyn Cooper*/
 public abstract class DisplayObjectContainer extends Component
 {
     /**A Vector<DisplayObjectContainer> of all the children that this object contains.
@@ -17,7 +16,7 @@ public abstract class DisplayObjectContainer extends Component
      * too many levels of containership, as this can create confusing, hard to
      * maintain and poorly performing code. */
     Vector<Sprite> children = new Vector<Sprite>();
-    private DisplayObjectContainer parent;
+    //private DisplayObjectContainer parent;
     
     /**Add the supplied {@link com.medavox.display.Sprite} to the end of 
      * this object's list of children.

@@ -92,7 +92,7 @@ public class Stage extends DisplayObjectContainer implements Runnable
         System.out.println("stageHeight: "+ stageHeight);
     }
     
-    /**Called auotmatically when added to JFrame/JComponent. Primary task is to spawn and start
+    /**Called automatically when added to JFrame/JComponent. Primary task is to spawn and start
      * the rendering thread.*/
     public void addNotify()
     {
@@ -102,8 +102,11 @@ public class Stage extends DisplayObjectContainer implements Runnable
         height = getHeight();
         height =  this.getHeight();
         width =  this.getWidth();*/
-        animThread = new Thread(this);
-        animThread.start();
+        if(frameRate > 0)//only start per-frame updates if the frameRate requires it
+        {
+            animThread = new Thread(this);
+            animThread.start();
+        }
         repaint();
     }
     
@@ -184,7 +187,7 @@ public class Stage extends DisplayObjectContainer implements Runnable
         long beforeTime, timeDiff, sleepTime, frameInterval;
         //long numFrames = 0;
         beforeTime = System.currentTimeMillis();
-        frameInterval = Math.round((double)1000 / (double)frameRate);//work out the nearest whole num of milliseconds between frames
+        frameInterval = Math.round((double)1000 / (double)frameRate);//work out nearest whole num of ms between frames
         //System.out.println("run() method called in stage");
         while(true)
         {

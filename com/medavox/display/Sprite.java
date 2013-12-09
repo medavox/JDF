@@ -19,6 +19,7 @@ public abstract class Sprite extends DisplayObjectContainer
     protected double scale;
     protected int width;
     protected int height;
+    private DisplayObjectContainer parent;
     //protected Image image;
     
     public void setX(double x)
@@ -49,7 +50,7 @@ public abstract class Sprite extends DisplayObjectContainer
     }
     
     /**Gets the y value, rounding the internal double value up or down to the
-     * nearest int. */    
+     * nearest int. */
     public int getY()
     {
         return (int)Math.floor(y+0.5d);
@@ -78,15 +79,13 @@ public abstract class Sprite extends DisplayObjectContainer
         return height;
     }
     /**Get the current displayed size of the graphic. 1.0 is normal size 
-     (pixel-for-pixel), 0.1 is 10% normal size. <br /> <b> NOT YET IMPLEMENTED, 
-      sorry!</b>*/
+     (pixel-for-pixel), 0.1 is 10% normal size.*/
     public double getScale()
     {
         return scale;
     }
     /**Specify a size multiplier to display the Sprite's graphic at.
-     *  1.0 is normal, 0.1 is 10% normal size.
-     * <br /> <b> NOT YET IMPLEMENTED, sorry!</b>*/
+     *  1.0 is normal, 0.1 is 10% normal size.*/
     public void setScale(double newScale)
     {
         scale = newScale;
@@ -97,7 +96,7 @@ public abstract class Sprite extends DisplayObjectContainer
      * of the local graphics instance.*/
     public abstract void drawSprite(Graphics2D g2);
     
-    public void setMother(DisplayObjectContainer dad)
+    public void setMother(DisplayObjectContainer dad)//your mum's your dad, your mum's your dad, your mum's your dad, your mum's YOUR DAD OI!,
     {
         this.parent = dad;
     }

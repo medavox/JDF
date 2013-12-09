@@ -1,0 +1,15 @@
+in order for MouseEvents to work for Sprites, the Stage must:-
+have a MouseListener
+maintain a list of listeners which the Stage's listener passes on the MouseEvents to if their sprite is under the mouse
+
+so Sprites will have an abstract override of AddMouseXListener (meaning all 3 add mouse listener methods), which adds itself to the liidt of listeners that stage will pass MouseEvents onto
+
+so sprites must have a reference to the stage,
+and stages must have lists of both the MouseListeners, and their sprites positions (either visual x and y, or stage x and y, not sure yet)
+
+Sprites need a reference to the Stage they are on, but I don't want to add yet another manually specified parameter to Sprite's constructor, so I tried making Stage a singleton; but this makes it hard to pass parameters (framerate, bg colour...) to Stage's constructor. The Singleton design also prevents me (by definition) from having more than one Stage object at a time; I might want one for each game screen (robot design screen, battle, rumble, campaign, shop...)
+
+What about if I still create Stages in the normal way, but create a static method in Stage to get a reference to the last-created Stage object? that makes it easy to get a reference for Sprites, and means I don't have to completely rewrite the API for Stage. 
+But what about Stage's ability to keep a reference to the last-created Stage object (or all Stage objects)? how can I modify a static variable (the list) from within a constructor?
+
+hmmmm.
