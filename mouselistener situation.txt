@@ -5,7 +5,7 @@ maintain a list of listeners which the Stage's listener passes on the MouseEvent
 so Sprites will have an abstract override of AddMouseXListener (meaning all 3 add mouse listener methods), which adds itself to the liidt of listeners that stage will pass MouseEvents onto
 
 so sprites must have a reference to the stage,
-and stages must have lists of both the MouseListeners, and their sprites positions (either visual x and y, or stage x and y, not sure yet)
+and stages must have lists of both the MouseListeners, and their sprite's positions (either visual x and y, or stage x and y, not sure yet)
 
 Sprites need a reference to the Stage they are on, but I don't want to add yet another manually specified parameter to Sprite's constructor, so I tried making Stage a singleton; but this makes it hard to pass parameters (framerate, bg colour...) to Stage's constructor. The Singleton design also prevents me (by definition) from having more than one Stage object at a time; I might want one for each game screen (robot design screen, battle, rumble, campaign, shop...)
 

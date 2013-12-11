@@ -1,5 +1,5 @@
 MouseEvent
-if(sprite.hitTest(mouseEvent.getPoint()) && sprite.isListnening())
+if(sprite.hitTest(mouseEvent.getPoint()) && sprite.isListening())
 {
     sprite.dispatch(mouseEvent);
 }

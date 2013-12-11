@@ -101,25 +101,40 @@ public abstract class Sprite extends DisplayObjectContainer
         this.parent = dad;
     }
     
+    /**Gets the DisplayObjectContainer-descended object which contains this class, via the addChild() mechanism.*/
     public DisplayObjectContainer getMother()
     {
         return parent;
     }
     
+    /**Gets the Stage object which this Sprite belongs to. The implementation feels a bit hacky.*/
+    public Stage getStage()
+    {
+        DisplayObjectContainer ancestor = this.getMother();
+        while(ancestor instanceof Sprite)
+        {
+            ancestor = ( (Sprite)ancestor).getMother();
+        }
+        assert ancestor instanceof Stage;
+        return (Stage)ancestor;
+    }
     
-    //here begins a whole bunch of tedious boilerplate addMouse*listener overrides, to provide for a lack of visible swing/awt implementation
+    //here begins a whole bunch of tedious boilerplate addMouse*Listener overrides, to provide for a lack of visible swing/awt implementation
     public void addMouseListener(MouseListener l)
     {
-    
+        super();
+        this.getStage().addMouseChildListener(l, this);
     }
     
     public void addMouseMotionListener(MouseMotionListener l)
     {
-    
+        super();
+        this.getStage().addMouseMotionChildListener(l, this);
     }
     
     public void addMouseWheelListener(MouseWheelListener l)
     {
-    
+        super();
+        this.getStage().addMouseWheelChildListener(l, this);
     }
 }

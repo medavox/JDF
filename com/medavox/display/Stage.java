@@ -5,18 +5,27 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
+import java.util.EventListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
+
+import java.util.List;
+import java.util.LinkedList;
+
 
 /*if something moves offstage, and then we zoom out so we can see it past the 
- * bounds of the stage, do we actually render it or not? and if we don't, in what
- * way will we keep track of its position without actually rendering it?
- * */
+ bounds of the stage, do we actually render it or not? and if we don't, in what
+ way will we keep track of its position without actually rendering it?*/
 
 /**Main animation thread. Draws all components which are added to its list of children,
  * and handles frame-based animation by rendering at a fixed interval per second*/
 @SuppressWarnings("serial")
-public class Stage extends DisplayObjectContainer implements Runnable
+public class Stage extends DisplayObjectContainer implements Runnable, MouseListener, MouseMotionListener, MouseWheelListener
 {
     public int stageWidth;
     public int stageHeight;
@@ -24,6 +33,10 @@ public class Stage extends DisplayObjectContainer implements Runnable
     protected int bgColour = 0;
     public int frameRate;
     private Runnable frameCode;
+    
+    private List<Sprite> mouseListeners = new LinkedList<Sprite>();
+    private List<Sprite> mouseWheelListeners = new LinkedList<Sprite>();
+    private List<Sprite> mouseMotionListeners = new LinkedList<Sprite>();
     //private boolean drawGrid = false;
 
     /**Create a new stage instance with the specified parameters.
@@ -45,12 +58,12 @@ public class Stage extends DisplayObjectContainer implements Runnable
     {
         init(stageWidth, stageHeight, bgColour, frameRate, frameCode);
     }
-    
+    /**Constructor with null frame code.*/
     public Stage(int stageWidth, int stageHeight, int bgColour, int frameRate)
     {
         init(stageWidth, stageHeight, bgColour, frameRate, null);
     }
-    
+    /**Contrsuctor with frameRate of 30 and null frame code.*/
     public Stage(int stageWidth, int stageHeight, int bgColour)
     {
         init(stageWidth, stageHeight, bgColour, 30, null);
@@ -90,6 +103,95 @@ public class Stage extends DisplayObjectContainer implements Runnable
         System.out.println("height: "+ this.getHeight());
         System.out.println("stageWidth: "+ stageWidth);
         System.out.println("stageHeight: "+ stageHeight);
+    }
+    
+    public void addMouseChildListener(MouseListener l, Sprite s)
+    {
+        mouseListeners.add(s);
+    }
+    
+    public void addMouseMotionChildListener(MouseMotionListener l, Sprite s)
+    {
+        mouseMotionListeners.add(s);
+    }
+    
+    public void addMouseWheelChildListener(MouseWheelListener l, Sprite s)
+    {
+        mouseWheelListeners.add(s);
+    }
+    
+    //MouseListener implementation
+    public void mouseExited(MouseEvent e)
+    {
+        
+    }
+    public void mouseEntered(MouseEvent e)
+    {
+        
+    }
+    public void mouseReleased(MouseEvent e)
+    {
+        for(Sprite s : mouseListeners)
+        {
+            if(e.getX() >= s.getX()
+            && e.getX() <= (s.getX() + s.getWidth())
+            && e.getY() >= s.getY()
+            && e.getY() <= (s.getY() + s.getHeight()) )
+            {
+                s.dispatchEvent(e);
+            }
+        }
+    }
+    public void mousePressed(MouseEvent e)
+    {
+        for(Sprite s : mouseListeners)
+        {
+            if(e.getX() >= s.getX()
+            && e.getX() <= (s.getX() + s.getWidth())
+            && e.getY() >= s.getY()
+            && e.getY() <= (s.getY() + s.getHeight()) )
+            {
+                s.dispatchEvent(e);
+            }
+        }
+    }
+    public void mouseClicked(MouseEvent e)
+    {
+        for(Sprite s : mouseListeners)
+        {
+            if(e.getX() >= s.getX()
+            && e.getX() <= (s.getX() + s.getWidth())
+            && e.getY() >= s.getY()
+            && e.getY() <= (s.getY() + s.getHeight()) )
+            {
+                s.dispatchEvent(e);
+            }
+        }
+    }
+    
+    //MouseMotionListener implementation
+    public void mouseMoved(MouseEvent e)
+    {
+        
+    }
+    public void mouseDragged(MouseEvent e)
+    {
+        
+    }
+    
+    //MouseWheelListener implementation
+    public void mouseWheelMoved(MouseWheelEvent e)
+    {
+        for(Sprite s : mouseWheelListeners)
+        {
+            if(e.getX() >= s.getX()
+            && e.getX() <= (s.getX() + s.getWidth())
+            && e.getY() >= s.getY()
+            && e.getY() <= (s.getY() + s.getHeight()) )
+            {
+                s.dispatchEvent(e);
+            }
+        }
     }
     
     /**Called automatically when added to JFrame/JComponent. Primary task is to spawn and start

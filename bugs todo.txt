@@ -1,2 +1,4 @@
-MouseEvents can't be properly listened for by sprites (ie in an array of button-likes), because they have no swing corporeal form, and are not 'added' to their parent  container; thus they can't be clicked on, so don't receive MouseEvents for that reason as well.
+MouseEvents can't be properly listened for by sprites (ie in an array of button-likes), 
+because they have no swing corporeal form, and are not 'added' to their parent  container; 
+thus they can't be clicked on, so don't receive MouseEvents for that reason as well.
 need a stage which updates only when a triggered event is captured - chess doesn't need 30fps
