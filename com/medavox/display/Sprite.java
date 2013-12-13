@@ -122,19 +122,19 @@ public abstract class Sprite extends DisplayObjectContainer
     //here begins a whole bunch of tedious boilerplate addMouse*Listener overrides, to provide for a lack of visible swing/awt implementation
     public void addMouseListener(MouseListener l)
     {
-        super();
+        super.addMouseListener(l);
         this.getStage().addMouseChildListener(l, this);
     }
     
     public void addMouseMotionListener(MouseMotionListener l)
     {
-        super();
+        super.addMouseMotionListener(l);
         this.getStage().addMouseMotionChildListener(l, this);
     }
     
     public void addMouseWheelListener(MouseWheelListener l)
     {
-        super();
+        super.addMouseWheelListener(l);
         this.getStage().addMouseWheelChildListener(l, this);
     }
 }
