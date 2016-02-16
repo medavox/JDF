@@ -1,3 +1,6 @@
+UPDATE 2016: Just use [Haxe](https://en.wikipedia.org/wiki/Haxe) with [openfl](https://en.wikipedia.org/wiki/OpenFL)
+===
+
 Java Display Framework
 ======================
 
